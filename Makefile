@@ -1,6 +1,7 @@
 FLAGS		=	-Werror -Wextra -Wall -g
 SRC			=	pp.c	\
 				parquetry.c	\
+				hexagon.c	\
 
 OBJ			=	$(SRC:.c=.o)
 

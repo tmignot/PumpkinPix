@@ -1,8 +1,18 @@
-#include	<unistd.h>
-#include	<stdio.h>
-#include	<stdlib.h>
-#include	<fcntl.h>
-#include	<string.h>
+#ifndef	STDLIB
+# include <stdlib.h>
+#endif
+#ifndef	UNISTD
+# include <unistd.h>
+#endif
+#ifndef	FCNTL
+# include <fcntl.h>
+#endif
+#ifndef	STDIO
+# include <stdio.h>
+#endif
+#ifndef STRING
+# include <string.h>
+#endif
 
 #define		WCMODE	O_WRONLY | O_CREAT
 #define		OUTFILE_PERM	S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH
