@@ -20,6 +20,7 @@ int	pphexagon(int ac, char** av) {
 	unsigned char	bmpfileheader[12];
 	unsigned char*	bmpinfoheader;
 	unsigned short	bmpih_size;
+	unsigned char	arraybeginning[16];
 
 	if (ac == 1) {
 		puts("hexagon: usage: pp --hexagon bmpfilename");
@@ -61,8 +62,17 @@ int	pphexagon(int ac, char** av) {
 	printf("%3d %3d %3d %3d |%10i  pixel array size (bytes)\n", bmpinfoheader[20], bmpinfoheader[21], bmpinfoheader[22], bmpinfoheader[23], ((int*)bmpinfoheader)[5]);
 	printf("%3d %3d %3d %3d |%10i\n", bmpinfoheader[24], bmpinfoheader[25], bmpinfoheader[26], bmpinfoheader[27], ((int*)bmpinfoheader)[6]);
 	printf("%3d %3d %3d %3d |%10i\n", bmpinfoheader[28], bmpinfoheader[29], bmpinfoheader[30], bmpinfoheader[31], ((int*)bmpinfoheader)[7]);
-	printf("%3d %3d %3d %3d |%10i\n", bmpinfoheader[31], bmpinfoheader[32], bmpinfoheader[33], bmpinfoheader[34], ((int*)bmpinfoheader)[8]);
-	printf("%3d %3d %3d %3d |%10i\n", bmpinfoheader[35], bmpinfoheader[36], bmpinfoheader[37], bmpinfoheader[38], ((int*)bmpinfoheader)[9]);
+	printf("%3d %3d %3d %3d |%10i\n", bmpinfoheader[32], bmpinfoheader[33], bmpinfoheader[34], bmpinfoheader[35],((int*)bmpinfoheader)[8]);
+	printf("%3d %3d %3d %3d |%10i\n", bmpinfoheader[36], bmpinfoheader[37], bmpinfoheader[38], bmpinfoheader[39], ((int*)bmpinfoheader)[9]);
+	free(bmpinfoheader);
+
+	printf("hexagon: %s: beginning of array\n", av[1]);
+	read(fd, (void*)arraybeginning, 32);
+	printf("%3d ", arraybeginning[0]);
+	for (int i=1; i<32;) {
+		printf("%3d", arraybeginning[i++]);
+		putchar(((!(i%8))?'\n':' '));
+	}
 
 	close(fd);
 	return 0;
