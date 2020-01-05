@@ -28,7 +28,7 @@ int ppparquetry(int ac, char** av) {
 	unsigned char	array[16] = {0, 0, 0, 0, 0, 200, 200, 100, 100, 0, 0, 0, 0, 0, 0, 0};
 
 	if (ac != 3) {
-		puts("usage: pp input_filename output_filename");
+		puts("usage: pp --parquetry input_filename output_filename");
 		return (-1);}
 	if (!strcmp(av[1], av[2])) {
 		puts("Input and output files names are identical");
